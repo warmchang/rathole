@@ -63,6 +63,8 @@ pub struct ClientServiceConfig {
     #[serde(skip)]
     pub name: String,
     pub local_addr: String,
+    #[serde(default)] // Default to false
+    pub prefer_ipv6: bool,
     pub token: Option<MaskedString>,
     pub nodelay: Option<bool>,
     pub retry_interval: Option<u64>,
@@ -201,6 +203,7 @@ fn default_client_retry_interval() -> u64 {
 pub struct ClientConfig {
     pub remote_addr: String,
     pub default_token: Option<MaskedString>,
+    pub prefer_ipv6: Option<bool>,
     pub services: HashMap<String, ClientServiceConfig>,
     #[serde(default)]
     pub transport: TransportConfig,
